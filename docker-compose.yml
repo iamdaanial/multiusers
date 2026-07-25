@@ -1,0 +1,13 @@
+services:
+  ocis:
+    image: owncloud/ocis:latest
+    ports:
+      - "9200:9200"
+    environment:
+      OCIS_INSECURE: "true"
+      OCIS_URL: "https://localhost:9200"
+      IDM_ADMIN_PASSWORD: "admin"
+    volumes:
+      - ./config:/etc/ocis
+      - ./data:/var/lib/ocis
+    entrypoint: [ "/bin/sh", "-c", "ocis init || true && ocis server" ]
