@@ -18,7 +18,7 @@ Open https://localhost:9200 — login: admin / admin
 ## Roadmap
 
 - [x] Run oCIS locally
-- [ ] Admin portal (Python) to create tenants
+- [x] Admin portal (Python) to create tenants
 - [ ] Deploy on Kubernetes (k3s)
 - [ ] CI/CD with GitHub Actions
 - [ ] GitOps with ArgoCD
