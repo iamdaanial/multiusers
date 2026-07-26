@@ -1,2 +1,10 @@
 config/
 data/
+__pycache__/
+*.pyc
+tenants/*/.env
+venv/
+env/
+.vscode/
+Thumbs.db
+*.log	

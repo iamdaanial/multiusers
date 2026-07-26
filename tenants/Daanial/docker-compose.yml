@@ -1,0 +1,20 @@
+services:
+  ocis:
+    image: owncloud/ocis:8.0.1
+    container_name: ocis-Daanial
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: ["server"]
+    environment:
+      OCIS_URL: "https://localhost:9201"
+      OCIS_INSECURE: "true"
+      PROXY_HTTP_ADDR: "0.0.0.0:9201"
+      PROXY_ENABLE_BASIC_AUTH: "true"
+      OCIS_CONFIG_DIR: "/etc/ocis"
+      OCIS_BASE_DATA_PATH: "/var/lib/ocis"
+    ports:
+      - "9201:9201"
+    volumes:
+      - ./config:/etc/ocis
+      - ./data:/var/lib/ocis
