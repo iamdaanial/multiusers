@@ -10,7 +10,8 @@ import urllib.error
 import urllib.request
 
 BASE_DIR = os.path.dirname(__file__)
-TENANTS_DIR = os.path.join(BASE_DIR, "..", "tenants")
+TENANTS_DIR = os.environ.get(
+    "TENANTS_DIR", os.path.join(BASE_DIR, "..", "tenants"))
 TEMPLATE_FILE = os.path.join(
     TENANTS_DIR, "_template", "docker-compose.yml.tmpl")
 
@@ -68,7 +69,8 @@ def set_quota(port, password, storage_gb):
 
     for attempt in range(15):
         try:
-            drives = _api_request(port, password, "GET", "/graph/v1.0/me/drives")
+            drives = _api_request(port, password, "GET",
+                                  "/graph/v1.0/me/drives")
             break
         except (urllib.error.URLError, ConnectionError):
             time.sleep(2)

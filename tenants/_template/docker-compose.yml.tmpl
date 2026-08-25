@@ -2,6 +2,7 @@ services:
   ocis:
     image: owncloud/ocis:8.0.1
     container_name: ocis-__TENANT__
+    user: "0:0"
     env_file:
       - .env
     restart: unless-stopped
