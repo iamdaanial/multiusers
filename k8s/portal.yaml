@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: portal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: portal
+  template:
+    metadata:
+      labels:
+        app: portal
+    spec:
+      containers:
+        - name: portal
+          image: daanial24/multiusers-portal:v1
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: tenants
+              mountPath: /tenants
+      volumes:
+        - name: tenants
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: portal
+spec:
+  type: NodePort
+  selector:
+    app: portal
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30500
