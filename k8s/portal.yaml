@@ -12,17 +12,12 @@ spec:
       labels:
         app: portal
     spec:
+      serviceAccountName: portal
       containers:
         - name: portal
-          image: daanial24/multiusers-portal:v1
+          image: daanial24/multiusers-portal:v2
           ports:
             - containerPort: 5000
-          volumeMounts:
-            - name: tenants
-              mountPath: /tenants
-      volumes:
-        - name: tenants
-          emptyDir: {}
 ---
 apiVersion: v1
 kind: Service
